@@ -5,10 +5,10 @@ namespace Shopee\Nodes\Item\Parameters;
 use Shopee\RequestParameterCollection;
 use Shopee\RequestParametersInterface;
 
-class Wholesales extends RequestParameterCollection
+class AttributeValueList extends RequestParameterCollection
 {
     /**
-     * @param Wholesale|RequestParametersInterface $parameter
+     * @param Attribute|RequestParametersInterface $parameter
      * @return $this
      */
     public function add(RequestParametersInterface $parameter)
@@ -21,12 +21,11 @@ class Wholesales extends RequestParameterCollection
     /**
      * @param array $parameters
      * @return $this
-     * @throws \ReflectionException
      */
     public function fromArray(array $parameters)
     {
         foreach ($parameters as $parameter) {
-            $this->add(new Wholesale($parameter));
+            $this->add(new AttributeValue($parameter));
         }
 
         return $this;

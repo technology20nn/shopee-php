@@ -22,18 +22,18 @@ class Attribute extends RequestParameters
         return $this;
     }
 
-    public function getValue(): string
+    public function getValueList(): AttributeValueList
     {
-        return $this->parameters['value'];
+        return $this->parameters['attribute_value_list'];
     }
 
     /**
-     * @param string $value
+     * @param AttributeValueList $valueList
      * @return $this
      */
-    public function setValue(string $value)
+    public function setValueList(AttributeValueList $valueList)
     {
-        $this->parameters['value'] = $value;
+        $this->parameters['attribute_value_list'] = $valueList;
 
         return $this;
     }

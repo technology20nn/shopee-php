@@ -10,7 +10,7 @@ class Add extends RequestParameters
 
     public function getName(): string
     {
-        return $this->parameters['name'];
+        return $this->parameters['item_name'];
     }
 
     /**
@@ -21,7 +21,7 @@ class Add extends RequestParameters
      */
     public function setName(string $name)
     {
-        $this->parameters['name'] = $name;
+        $this->parameters['item_name'] = $name;
 
         return $this;
     }
@@ -46,7 +46,7 @@ class Add extends RequestParameters
 
     public function getPrice(): float
     {
-        return $this->parameters['price'];
+        return $this->parameters['original_price'];
     }
 
     /**
@@ -57,14 +57,14 @@ class Add extends RequestParameters
      */
     public function setPrice(float $price)
     {
-        $this->parameters['price'] = $price;
+        $this->parameters['original_price'] = $price;
 
         return $this;
     }
 
     public function getStock(): int
     {
-        return $this->parameters['stock'];
+        return $this->parameters['normal_stock'];
     }
 
     /**
@@ -75,10 +75,45 @@ class Add extends RequestParameters
      */
     public function setStock(int $stock)
     {
-        $this->parameters['stock'] = $stock;
+        $this->parameters['normal_stock'] = $stock;
 
         return $this;
     }
+
+    public function getStatus(): int
+    {
+        return $this->parameters['item_status'];
+    }
+
+    /**
+     * The current stock quantity of the item.
+     *
+     * @param int $stock
+     * @return $this
+     */
+    public function setStatus(int $stock)
+    {
+        $this->parameters['item_status'] = $stock;
+
+        return $this;
+    }
+
+    public function getDimension(): Dimension
+    {
+        return $this->parameters['dimension'];
+    }
+
+    /**
+     * @param Dimension $dimension
+     * @return $this
+     */
+    public function setDimension(Dimension $dimension)
+    {
+        $this->parameters['dimension'] = $dimension;
+
+        return $this;
+    }
+
 
     public function getItemSku(): ?string
     {
@@ -119,7 +154,7 @@ class Add extends RequestParameters
 
     public function getImages(): Images
     {
-        return $this->parameters['images'];
+        return $this->parameters['image'];
     }
 
     /**
@@ -131,7 +166,7 @@ class Add extends RequestParameters
      */
     public function setImages(Images $images)
     {
-        $this->parameters['images'] = $images;
+        $this->parameters['image'] = $images;
 
         return $this;
     }
@@ -156,7 +191,7 @@ class Add extends RequestParameters
 
     public function getLogistics(): ?Logistics
     {
-        return $this->parameters['logistics'];
+        return $this->parameters['logistic_info'];
     }
 
     /**
@@ -167,7 +202,7 @@ class Add extends RequestParameters
      */
     public function setLogistics(Logistics $logistics)
     {
-        $this->parameters['logistics'] = $logistics;
+        $this->parameters['logistic_info'] = $logistics;
 
         return $this;
     }
@@ -190,60 +225,7 @@ class Add extends RequestParameters
         return $this;
     }
 
-    public function getPackageLength(): ?int
-    {
-        return $this->parameters['package_length'];
-    }
-
-    /**
-     * The height of package for this single item, the unit is CM.
-     *
-     * @param int $packageLength
-     * @return $this
-     */
-    public function setPackageLength(int $packageLength)
-    {
-        $this->parameters['package_length'] = $packageLength;
-
-        return $this;
-    }
-
-    public function getPackageWidth(): ?int
-    {
-        return $this->parameters['package_width'];
-    }
-
-    /**
-     * The height of package for this single item, the unit is CM.
-     *
-     * @param int $packageWidth
-     * @return $this
-     */
-    public function setPackageWidth(int $packageWidth)
-    {
-        $this->parameters['package_width'] = $packageWidth;
-
-        return $this;
-    }
-
-    public function getPackageHeight(): ?int
-    {
-        return $this->parameters['package_height'];
-    }
-
-    /**
-     * The height of package for this single item, the unit is CM.
-     * @param int $packageHeight
-     * @return $this
-     */
-    public function setPackageHeight(int $packageHeight)
-    {
-        $this->parameters['package_height'] = $packageHeight;
-
-        return $this;
-    }
-
-    public function getDaysToShip(): ?int
+    public function getPreOrder(): ?PreOrder
     {
         return $this->parameters['days_to_ship'];
     }
@@ -251,12 +233,12 @@ class Add extends RequestParameters
     /**
      * The days to ship. Only work for pre-order, it means this value should be bigger than 7.
      *
-     * @param int $daysToShip
+     * @param PreOrder $preOrder
      * @return $this
      */
-    public function setDaysToShip(int $daysToShip)
+    public function setPreOrder(PreOrder $preOrder)
     {
-        $this->parameters['days_to_ship'] = $daysToShip;
+        $this->parameters['pre_order'] = $preOrder;
 
         return $this;
     }
@@ -275,6 +257,23 @@ class Add extends RequestParameters
     public function setWholesales(Wholesales $wholesales)
     {
         $this->parameters['wholesales'] = $wholesales;
+
+        return $this;
+    }
+
+    public function getBrand(): ?Brand
+    {
+        return $this->parameters['brand'];
+    }
+
+    /**
+     *
+     * @param Brand $brand
+     * @return $this
+     */
+    public function setBrand(Brand $brand)
+    {
+        $this->parameters['brand'] = $brand;
 
         return $this;
     }
