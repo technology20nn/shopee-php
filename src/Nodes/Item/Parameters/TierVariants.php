@@ -5,10 +5,10 @@ namespace Shopee\Nodes\Item\Parameters;
 use Shopee\RequestParameterCollection;
 use Shopee\RequestParametersInterface;
 
-class Variations extends RequestParameterCollection
+class TierVariants extends RequestParameterCollection
 {
     /**
-     * @param Variation|RequestParametersInterface $parameter
+     * @param TierVariant|RequestParametersInterface $parameter
      * @return $this
      */
     public function add(RequestParametersInterface $parameter)
@@ -26,7 +26,7 @@ class Variations extends RequestParameterCollection
     public function fromArray(array $parameters)
     {
         foreach ($parameters as $parameter) {
-            $this->add(new Variation($parameter));
+            $this->add(new TierVariant($parameter));
         }
 
         return $this;

@@ -4,7 +4,7 @@ namespace Shopee\Nodes\Item\Parameters;
 
 use Shopee\RequestParameters;
 
-class InitTierVariation extends RequestParameters
+class UpdateTierVariation extends RequestParameters
 {
     use ItemTrait;
 
@@ -19,13 +19,4 @@ class InitTierVariation extends RequestParameters
         $this->parameters['tier_variation'] = $tier_variants;
     }
 
-    public function getModel(): Variations
-    {
-        return $this->parameters['model'];
-    }
-
-    public function setModel(Variations $variations)
-    {
-        $this->parameters['model'] = $variations;
-    }
 }

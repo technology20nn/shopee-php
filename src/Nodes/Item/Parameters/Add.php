@@ -133,25 +133,6 @@ class Add extends RequestParameters
         return $this;
     }
 
-    public function getVariations(): ?Variations
-    {
-        return $this->parameters['variations'];
-    }
-
-    /**
-     * The variation of item is to list out all models of this product, for example,
-     * iPhone has model of White and Black, then its variations includes "White iPhone" and "Black iPhone".
-     *
-     * @param Variations $variations
-     * @return $this
-     */
-    public function setVariations(Variations $variations)
-    {
-        $this->parameters['variations'] = $variations;
-
-        return $this;
-    }
-
     public function getImages(): Images
     {
         return $this->parameters['image'];
@@ -173,7 +154,7 @@ class Add extends RequestParameters
 
     public function getAttributes(): ?Attributes
     {
-        return $this->parameters['attributes'];
+        return $this->parameters['attribute_list'];
     }
 
     /**
@@ -184,7 +165,7 @@ class Add extends RequestParameters
      */
     public function setAttributes(Attributes $attributes)
     {
-        $this->parameters['attributes'] = $attributes;
+        $this->parameters['attribute_list'] = $attributes;
 
         return $this;
     }

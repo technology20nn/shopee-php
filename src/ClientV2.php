@@ -5,6 +5,7 @@ namespace Shopee;
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\ClientException as GuzzleClientException;
+use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Exception\ServerException as GuzzleServerException;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Uri;
@@ -34,6 +35,7 @@ use function time;
  * @property Nodes\Item\Brand $brand
  * @property Nodes\Item\Attribute $attribute
  * @property Nodes\Item\Item $item
+ * @property Nodes\Image\Image $image
  */
 class ClientV2
 {
@@ -128,10 +130,11 @@ class ClientV2
 
         $this->nodes['author'] = new Nodes\Shop\Authorization($this);
         $this->nodes['shop'] = new Nodes\Shop\Shop($this);
-	    $this->nodes['category'] = new Nodes\Item\Category($this);
-	    $this->nodes['brand'] = new Nodes\Item\Brand($this);
-	    $this->nodes['attribute'] = new Nodes\Item\Attribute($this);
-	    $this->nodes['item'] = new Nodes\Item\Item($this);
+        $this->nodes['category'] = new Nodes\Item\Category($this);
+        $this->nodes['brand'] = new Nodes\Item\Brand($this);
+        $this->nodes['attribute'] = new Nodes\Item\Attribute($this);
+        $this->nodes['item'] = new Nodes\Item\Item($this);
+        $this->nodes['image'] = new Nodes\Image\Image($this);
     }
 
     public function __get(string $name)
@@ -224,16 +227,16 @@ class ClientV2
      */
     protected function signature($uri, $api_type): string
     {
-       switch ($api_type){
-           case self::API_TYPE_PUBLIC:
-               return $auth_query = $this->signatureGenerator->generateSignaturePublicLevel($uri, $this->partnerId);
-           case self::API_TYPE_SHOP:
-               return $auth_query = $this->signatureGenerator->generateSignatureShopLevel($uri, $this->partnerId, $this->accessToken, $this->shopId);
-           case self::API_TYPE_MERCHANT:
-               return $auth_query = $this->signatureGenerator->generateSignatureMerchantLevel($uri, $this->partnerId, $this->accessToken, $this->merchantId);
-           default:
-               return "";
-       }
+        switch ($api_type) {
+            case self::API_TYPE_PUBLIC:
+                return $auth_query = $this->signatureGenerator->generateSignaturePublicLevel($uri, $this->partnerId);
+            case self::API_TYPE_SHOP:
+                return $auth_query = $this->signatureGenerator->generateSignatureShopLevel($uri, $this->partnerId, $this->accessToken, $this->shopId);
+            case self::API_TYPE_MERCHANT:
+                return $auth_query = $this->signatureGenerator->generateSignatureMerchantLevel($uri, $this->partnerId, $this->accessToken, $this->merchantId);
+            default:
+                return "";
+        }
     }
 
     /**
@@ -267,6 +270,40 @@ class ClientV2
             $headers,
             $jsonBody
         );
+    }
+
+    public function upload(RequestInterface $request, $file_url): ResponseInterface
+    {
+        try {
+            list($tempImageDownload, $fileName) = $this->downloadFile($file_url);
+            $response = $this->httpClient->send($request, [
+                'multipart' => [
+                    [
+                        'name' => 'image',
+                        'contents' => fopen($tempImageDownload,'r')
+                    ],
+                ]
+            ]);
+        } catch (GuzzleClientException $exception) {
+            switch ($exception->getCode()) {
+                case 400:
+                    $className = BadRequestException::class;
+                    break;
+                case 403:
+                    $className = AuthException::class;
+                    break;
+                default:
+                    $className = ClientException::class;
+            }
+
+            throw Factory::create($className, $exception);
+        } catch (GuzzleServerException $exception) {
+            throw Factory::create(ServerException::class, $exception);
+        } catch (GuzzleException $exception) {
+            throw Factory::create(ServerException::class, $exception);
+        }
+
+        return $response;
     }
 
     public function send(RequestInterface $request): ResponseInterface
@@ -309,6 +346,15 @@ class ClientV2
             ->withQuery($auth_query);
         $uri = Uri::withQueryValue($uri, 'redirect', $redirect_url);
         return $uri->__toString();
+    }
+
+    private function downloadFile($urlDownload)
+    {
+        $path_info = pathinfo($urlDownload);
+        $filename = $path_info['basename'];
+        $tempImage = tempnam(sys_get_temp_dir(), $filename);
+        copy($urlDownload, $tempImage);
+        return [$tempImage, $filename];
     }
 
 }
