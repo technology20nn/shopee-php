@@ -180,7 +180,7 @@ class Item extends NodeAbstractV2
     /**
      * Use this call to update item price.
      * https://open.shopee.com/documents?module=89&type=1&id=651&version=2
-     * @param array|Parameters\UpdatePrice $parameters
+     * @param array|Parameters\UpdateVariationPriceList $parameters
      * @return ResponseData
      */
     public function updatePrice($parameters = []): ResponseData
@@ -191,7 +191,7 @@ class Item extends NodeAbstractV2
     /**
      * Use this call to update item stock.
      * https://open.shopee.com/documents?module=89&type=1&id=652&version=2
-     * @param array|Parameters\UpdateStock $parameters
+     * @param array|Parameters\UpdateVariationStockList $parameters
      * @return ResponseData
      */
     public function updateStock($parameters = []): ResponseData

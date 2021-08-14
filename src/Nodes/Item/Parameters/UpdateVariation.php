@@ -6,7 +6,7 @@ use Shopee\RequestParameters;
 
 class UpdateVariation extends RequestParameters
 {
-    use ItemTrait;
+    use VariationIdTrait;
 
     public function getVariationSku()
     {
