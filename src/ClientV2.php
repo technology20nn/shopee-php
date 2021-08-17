@@ -276,11 +276,15 @@ class ClientV2
     {
         try {
             list($tempImageDownload, $fileName) = $this->downloadFile($file_url);
-            $response = $this->httpClient->send($request, [
+            $response = $this->httpClient->request(
+                "POST",
+                $request->getUri(),
+                [
                 'multipart' => [
                     [
                         'name' => 'image',
-                        'contents' => fopen($tempImageDownload,'r')
+                        'contents' => fopen($tempImageDownload, 'r'),
+                        'file_name' => $fileName
                     ],
                 ]
             ]);
