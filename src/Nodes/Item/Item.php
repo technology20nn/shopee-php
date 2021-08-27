@@ -255,4 +255,26 @@ class Item extends NodeAbstractV2
     {
         return $this->post('/api/v2/product/update_model', ClientV2::API_TYPE_SHOP, $parameters);
     }
+
+    /**
+     * For adding 2-tier variations (Forked).
+     *
+     * @param array|Parameters\AddVariations $parameters
+     * @return ResponseData
+     */
+    public function addModel($parameters = []): ResponseData
+    {
+        return $this->post('/api/v2/product/add_model', ClientV2::API_TYPE_SHOP, $parameters);
+    }
+
+    /**
+     * For adding 2-tier variations (Forked).
+     *
+     * @param array|Parameters\RemoveVariation $parameters
+     * @return ResponseData
+     */
+    public function removeModel($parameters = []): ResponseData
+    {
+        return $this->post('/api/v2/product/delete_model', ClientV2::API_TYPE_SHOP, $parameters);
+    }
 }
