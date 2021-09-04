@@ -80,7 +80,7 @@ class Add extends RequestParameters
         return $this;
     }
 
-    public function getStatus(): int
+    public function getStatus(): string
     {
         return $this->parameters['item_status'];
     }
@@ -88,12 +88,12 @@ class Add extends RequestParameters
     /**
      * The current stock quantity of the item.
      *
-     * @param int $stock
+     * @param string $status
      * @return $this
      */
-    public function setStatus(int $stock)
+    public function setStatus(string $status)
     {
-        $this->parameters['item_status'] = $stock;
+        $this->parameters['item_status'] = $status;
 
         return $this;
     }
