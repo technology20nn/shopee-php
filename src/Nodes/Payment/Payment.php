@@ -2,19 +2,21 @@
 
 namespace Shopee\Nodes\Payment;
 
+use Shopee\ClientV2;
 use Shopee\Nodes\NodeAbstract;
+use Shopee\Nodes\NodeAbstractV2;
 use Shopee\ResponseData;
 
-class Payment extends NodeAbstract
+class Payment extends NodeAbstractV2
 {
     /**
      * Use this API to get the transaction records of wallet.
      * @param  array  $parameters
      * @return ResponseData
      */
-    public function getTransactionList($parameters = []): ResponseData
+    public function getWalletTransactionList($parameters = []): ResponseData
     {
-        return $this->post('/api/v1/wallet/transaction/list', $parameters);
+        return $this->get('/api/v2/payment/get_wallet_transaction_list', ClientV2::API_TYPE_SHOP, $parameters);
     }
 
     /**
@@ -24,6 +26,15 @@ class Payment extends NodeAbstract
      */
     public function getPayoutDetail($parameters = []): ResponseData
     {
-        return $this->post('/api/v1/payment/get_payout_details', $parameters);
+        return $this->post('/api/v2/payment/get_payout_detail', ClientV2::API_TYPE_SHOP, $parameters);
+    }
+
+    /**
+     * @param array $parameters
+     * @return ResponseData
+     */
+    public function getEscrowDetail($parameters = []): ResponseData
+    {
+        return $this->get('/api/v2/payment/get_escrow_detail', ClientV2::API_TYPE_SHOP, $parameters);
     }
 }
