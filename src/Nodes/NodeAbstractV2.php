@@ -2,8 +2,10 @@
 
 namespace Shopee\Nodes;
 
+use Exception;
 use GuzzleHttp\Psr7\Uri;
 use GuzzleHttp\Psr7\Utils;
+use PHPUnit\Util\Json;
 use Psr\Http\Message\UriInterface;
 use Shopee\Client;
 use Shopee\ClientV2;
@@ -72,4 +74,54 @@ abstract class NodeAbstractV2
         $response = $this->client->upload($request, $file_url);
         return new ResponseData($response);
     }
+
+    /**
+     * @param $video_upload_id
+     * @param $file_url
+     * @param $file_name
+     * @return ResponseData
+     * @throws Exception
+     */
+    public function uploadVideoParts($video_upload_id, $file_url, $file_name){
+        $fh        = fopen($file_url, 'r');
+        $chunkSize = 4194304; # 4MB
+        $response = [];
+        $parts = [];
+        $serial = 0;
+        while (! feof($fh)) {
+            $parts[] = $serial;
+            $chunk = fread($fh, $chunkSize);
+            $request = $this->client->newRequest("/api/v2/media_space/upload_video_part", ClientV2::API_TYPE_SHOP, []);
+            $response = $this->client->uploadVideoPart($request, $video_upload_id, $file_name, $chunk, $serial);
+            $this->parseResponseData(new ResponseData($response));
+            $serial ++;
+        }
+        $response_data_video =  new ResponseData($response);
+        $response_data_video->addData('part_seq_list', $parts);
+        return $response_data_video;
+    }
+
+    public function downloadFile($urlDownload)
+    {
+        $path_info = pathinfo($urlDownload);
+        $filename = $path_info['basename'];
+        $tempImage = tempnam(sys_get_temp_dir(), $filename);
+        copy($urlDownload, $tempImage);
+        return [$tempImage, $filename];
+    }
+
+    /**
+     * @param $response ResponseData
+     * @return mixed
+     * @throws Exception
+     */
+    private function parseResponseData($response){
+        $response_data = $response->getData();
+        if(!empty($response_data['error'])){
+            $message = $response_data['error'] . ": " . $response_data['message'];
+            throw new Exception($message);
+        }
+        return $response_data;
+    }
+
 }

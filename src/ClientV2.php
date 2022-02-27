@@ -2,6 +2,7 @@
 
 namespace Shopee;
 
+use function _PHPStan_76800bfb5\RingCentral\Psr7\stream_for;
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\ClientException as GuzzleClientException;
@@ -36,13 +37,14 @@ use function time;
  * @property Nodes\Item\Attribute $attribute
  * @property Nodes\Item\Item $item
  * @property Nodes\Image\Image $image
+ * @property Nodes\Video\Video $video
  * @property Nodes\Logistics\Logistics $logistic
  * @property Nodes\Order\Order $order
  * @property Nodes\Payment\Payment $payment
  */
 class ClientV2
 {
-    public const VERSION = '2';
+    const VERSION = '2';
 
     const API_TYPE_PUBLIC = 1;
     const API_TYPE_SHOP = 2;
@@ -141,6 +143,7 @@ class ClientV2
 		$this->nodes['logistic'] = new Nodes\Logistics\Logistics($this);
 		$this->nodes['order'] = new Nodes\Order\Order($this);
 		$this->nodes['payment'] = new Nodes\Payment\Payment($this);
+		$this->nodes['video'] = new Nodes\Video\Video($this);
     }
 
     public function __get(string $name)
@@ -316,6 +319,68 @@ class ClientV2
         return $response;
     }
 
+    public function uploadVideoPart(RequestInterface $request, $video_upload_id, $file_name, $chunk, $part_seq): ResponseInterface
+    {
+        try {
+            $part_md5 = md5($chunk);
+            $boundary  = '----iCEBrkUploaderBoundary' . uniqid();
+            $response = $this->httpClient->request(
+                "POST",
+                $request->getUri(),
+                [
+                    'headers' => [
+                        'Transfer-Encoding'   => 'chunked',
+                        'Accept-Encoding'     => 'gzip, deflate, br',
+                        'Accept'              => 'application/json, text/javascript, */*; q=0.01',
+                        'Content-disposition' => 'attachment; filename="' . $file_name . '"',
+                        'Content-length'      => strlen($chunk)-1,
+                    ],
+                    'multipart' => [
+                        [
+                            'name' => 'video_upload_id',
+                            'contents' => $video_upload_id,
+                        ],
+                        [
+                            'name' => 'part_seq',
+                            'contents' => $part_seq,
+                        ],
+                        [
+                            'name' => 'content_md5',
+                            'contents' => $part_md5,
+                        ],
+                        [
+                            'name' => 'part_content',
+                            'contents' => $chunk,
+                            'filename' => $file_name,
+                            'headers' => [
+                                'Content-Type' => 'multipart/form-data; boundary=' . $boundary
+                            ]
+                        ]
+                    ]
+                ]);
+
+        } catch (GuzzleClientException $exception) {
+            switch ($exception->getCode()) {
+                case 400:
+                    $className = BadRequestException::class;
+                    break;
+                case 403:
+                    $className = AuthException::class;
+                    break;
+                default:
+                    $className = ClientException::class;
+            }
+
+            throw Factory::create($className, $exception);
+        } catch (GuzzleServerException $exception) {
+            throw Factory::create(ServerException::class, $exception);
+        } catch (GuzzleException $exception) {
+            throw Factory::create(ServerException::class, $exception);
+        }
+
+        return $response;
+    }
+
     public function send(RequestInterface $request): ResponseInterface
     {
         try {
@@ -358,7 +423,7 @@ class ClientV2
         return $uri->__toString();
     }
 
-    private function downloadFile($urlDownload)
+    public function downloadFile($urlDownload)
     {
         $path_info = pathinfo($urlDownload);
         $filename = $path_info['basename'];

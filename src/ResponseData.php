@@ -32,4 +32,8 @@ class ResponseData
     {
         return $this->data;
     }
+
+    public function addData($key, $value){
+        $this->data[$key] = $value;
+    }
 }
