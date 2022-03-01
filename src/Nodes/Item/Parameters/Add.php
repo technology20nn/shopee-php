@@ -272,7 +272,7 @@ class Add extends RequestParameters
      */
     public function setVideoUploadId(string $name)
     {
-        $this->parameters['video_upload_id'] = $name;
+        $this->parameters['video_upload_id'] = [$name];
 
         return $this;
     }
