@@ -224,4 +224,22 @@ class UpdateItem extends RequestParameters
 
         return $this;
     }
+
+    public function geVideoUploadId(): string
+    {
+        return $this->parameters['video_upload_id'];
+    }
+
+    /**
+     * Name of the item in local language.
+     *
+     * @param string $name
+     * @return $this
+     */
+    public function setVideoUploadId(string $name)
+    {
+        $this->parameters['video_upload_id'] = $name;
+
+        return $this;
+    }
 }
