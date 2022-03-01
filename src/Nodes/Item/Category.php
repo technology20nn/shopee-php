@@ -28,4 +28,14 @@ class Category extends NodeAbstractV2 {
 	public function getCategoryRecommend($parameters = []): ResponseData {
 		return $this->get("/api/v2/product/category_recommend", ClientV2::API_TYPE_SHOP, $parameters);
 	}
+
+    /**
+     * Use this call to get information of shop.
+     * https://open.shopee.com/documents/v2/v2.product.support_size_chart?module=89&type=1
+     * @param array|RequestParametersInterface $parameters
+     * @return ResponseData
+     */
+    public function checkSupportChart($parameters = []): ResponseData {
+        return $this->get("/api/v2/product/support_size_chart", ClientV2::API_TYPE_SHOP, $parameters);
+    }
 }
