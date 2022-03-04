@@ -277,4 +277,15 @@ class Item extends NodeAbstractV2
     {
         return $this->post('/api/v2/product/delete_model', ClientV2::API_TYPE_SHOP, $parameters);
     }
+
+    /**
+     * Update size chart image of item.
+     * https://open.shopee.com/documents/v2/v2.product.update_size_chart?module=89&type=1
+     * @param array|Parameters\UpdateSizeChart $parameters
+     * @return ResponseData
+     */
+    public function updateSizeChart($parameters = []): ResponseData
+    {
+        return $this->post('/api/v2/product/update_size_chart', ClientV2::API_TYPE_SHOP, $parameters);
+    }
 }
