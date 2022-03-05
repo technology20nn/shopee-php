@@ -8,7 +8,7 @@ class UpdateSizeChart extends RequestParameters
 {
     use ItemTrait;
 
-    public function getSizeChart(): int
+    public function getSizeChart(): string
     {
         return $this->parameters['size_chart'];
     }
