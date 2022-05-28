@@ -276,4 +276,22 @@ class Add extends RequestParameters
 
         return $this;
     }
+    public function getDescriptionType(): string
+    {
+        return $this->parameters['description_type'];
+    }
+
+    /**
+     * Name of the item in description_type
+     *
+     * @param string $description_type
+     * @return $this
+     */
+    public function setDescriptionType(string $description_type)
+    {
+        $this->parameters['description_type'] = $description_type;
+
+        return $this;
+    }
+
 }
