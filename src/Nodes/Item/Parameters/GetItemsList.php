@@ -17,7 +17,7 @@ class GetItemsList extends RequestParameters
         'item_status' => self::NORMAL
     ];
 
-    public function getItemStatus(): int
+    public function getItemStatus(): string
     {
         return $this->parameters['item_status'];
     }
@@ -26,7 +26,7 @@ class GetItemsList extends RequestParameters
      * @param int $status
      * @return $this
      */
-    public function setItemStatus(int $status)
+    public function setItemStatus(string $status)
     {
         $this->parameters['item_status'] = $status;
 
