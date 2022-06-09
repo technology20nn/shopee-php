@@ -2,33 +2,14 @@
 
 namespace Shopee\Nodes\Returns;
 
-use Shopee\Nodes\NodeAbstract;
+use Illuminate\Support\Facades\Log;
+use Shopee\ClientV2;
+use Shopee\Nodes\NodeAbstractV2;
 use Shopee\RequestParametersInterface;
 use Shopee\ResponseData;
 
-class Returns extends NodeAbstract
+class Returns extends NodeAbstractV2
 {
-    /**
-     * Confirm return.
-     *
-     * @param array|RequestParametersInterface $parameters
-     * @return ResponseData
-     */
-    public function confirmReturn($parameters = []): ResponseData
-    {
-        return $this->post('/api/v1/returns/confirm', $parameters);
-    }
-
-    /**
-     * Dispute return.
-     *
-     * @param array|RequestParametersInterface $parameters
-     * @return ResponseData
-     */
-    public function disputeReturn($parameters = []): ResponseData
-    {
-        return $this->post('/api/v1/returns/dispute', $parameters);
-    }
 
     /**
      * Get return list.
@@ -38,17 +19,6 @@ class Returns extends NodeAbstract
      */
     public function getReturnList($parameters = []): ResponseData
     {
-        return $this->post('/api/v1/returns/get', $parameters);
-    }
-
-    /**
-     * Use this api to get detail information of a returned order.
-     *
-     * @param array|RequestParametersInterface $parameters
-     * @return ResponseData
-     */
-    public function getReturnDetail($parameters = []): ResponseData
-    {
-        return $this->post('/api/v1/returns/detail', $parameters);
+        return $this->get('/api/v2/returns/get_return_list', ClientV2::API_TYPE_SHOP, $parameters);
     }
 }
