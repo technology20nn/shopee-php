@@ -12,10 +12,10 @@ class UpdateVariationStock extends UpdateStock
     }
 
     /**
-     * @param SellerStock $stock
+     * @param SellerStocks $stock
      * @return $this
      */
-    public function setVariationStock(SellerStock $stock)
+    public function setVariationStock(SellerStocks $stock)
     {
         $this->parameters['seller_stock'] = $stock;
 

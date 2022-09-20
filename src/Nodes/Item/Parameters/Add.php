@@ -62,7 +62,7 @@ class Add extends RequestParameters
         return $this;
     }
 
-    public function getStock(): SellerStock
+    public function getStock(): SellerStocks
     {
         return $this->parameters['seller_stock'];
     }
@@ -70,10 +70,10 @@ class Add extends RequestParameters
     /**
      * The current stock quantity of the item.
      *
-     * @param SellerStock $stock
+     * @param SellerStocks $stock
      * @return $this
      */
-    public function setStock(SellerStock $stock)
+    public function setStock(SellerStocks $stock)
     {
         $this->parameters['seller_stock'] = $stock;
 
