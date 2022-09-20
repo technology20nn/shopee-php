@@ -8,16 +8,16 @@ class UpdateVariationStock extends UpdateStock
 
     public function getVariationStock()
     {
-        return $this->parameters['normal_stock'];
+        return $this->parameters['seller_stock'];
     }
 
     /**
-     * @param int $stock
+     * @param SellerStock $stock
      * @return $this
      */
-    public function setVariationStock(int $stock)
+    public function setVariationStock(SellerStock $stock)
     {
-        $this->parameters['normal_stock'] = $stock;
+        $this->parameters['seller_stock'] = $stock;
 
         return $this;
     }

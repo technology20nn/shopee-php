@@ -23,20 +23,20 @@ class Variation extends RequestParameters
         return $this;
     }
 
-    public function getStock(): int
+    public function getStock(): SellerStock
     {
-        return $this->parameters['normal_stock'];
+        return $this->parameters['seller_stock'];
     }
 
     /**
      * The current stock quantity of the variation in the listing currency.
      *
-     * @param int $stock
+     * @param SellerStock $stock
      * @return $this
      */
-    public function setStock(int $stock)
+    public function setStock(SellerStock $stock)
     {
-        $this->parameters['normal_stock'] = $stock;
+        $this->parameters['seller_stock'] = $stock;
 
         return $this;
     }
