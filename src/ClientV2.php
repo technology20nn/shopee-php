@@ -42,6 +42,7 @@ use function time;
  * @property Nodes\Order\Order $order
  * @property Nodes\Payment\Payment $payment
  * @property Nodes\Returns\Returns $returns
+ * @property Nodes\Discount\Discount $discount
  */
 class ClientV2
 {
@@ -146,6 +147,7 @@ class ClientV2
 		$this->nodes['payment'] = new Nodes\Payment\Payment($this);
 		$this->nodes['video'] = new Nodes\Video\Video($this);
 		$this->nodes['returns'] = new Nodes\Returns\Returns($this);
+		$this->nodes['discount'] = new Nodes\Discount\Discount($this);
     }
 
     public function __get(string $name)
