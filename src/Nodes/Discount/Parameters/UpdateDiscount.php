@@ -6,21 +6,7 @@ use Shopee\RequestParameters;
 
 class UpdateDiscount extends RequestParameters
 {
-    public function getDiscountId(): int
-    {
-        return $this->parameters['discount_id'];
-    }
-
-    /**
-     * @param int $discount_id
-     * @return $this
-     */
-    public function setDiscountId(int $discount_id)
-    {
-        $this->parameters['discount_id'] = $discount_id;
-
-        return $this;
-    }
+    use DiscountTrait;
     public function getName(): string
     {
         return $this->parameters['discount_name'];
