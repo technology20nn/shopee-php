@@ -32,4 +32,47 @@ class Logistics extends NodeAbstractV2
     {
         return $this->get('/api/v2/logistics/get_tracking_number', ClientV2::API_TYPE_SHOP, $parameters);
     }
+
+    /**
+     * Get return list.
+     *
+     * @param array|RequestParametersInterface $parameters
+     * @return ResponseData
+     */
+    public function getShippingParameter($parameters = []): ResponseData
+    {
+        return $this->get('/api/v2/logistics/get_shipping_parameter', ClientV2::API_TYPE_SHOP, $parameters);
+    }
+    /**
+     * Get return list.
+     *
+     * @param array|RequestParametersInterface $parameters
+     * @return ResponseData
+     */
+    public function shipOrder($parameters = []): ResponseData
+    {
+        return $this->post('/api/v2/logistics/ship_order', ClientV2::API_TYPE_SHOP, $parameters);
+    }
+
+    /**
+     * Get return list.
+     *
+     * @param array|RequestParametersInterface $parameters
+     * @return ResponseData
+     */
+    public function createShipingDocument($parameters = []): ResponseData
+    {
+        return $this->post('/api/v2/logistics/create_shipping_document', ClientV2::API_TYPE_SHOP, $parameters);
+    }
+
+    /**
+     * Get return list.
+     *
+     * @param array|RequestParametersInterface $parameters
+     * @return ResponseData
+     */
+    public function downloadShipingDocument($parameters = []): ResponseData
+    {
+        return $this->post('/api/v2/logistics/download_shipping_document', ClientV2::API_TYPE_SHOP, $parameters);
+    }
 }
