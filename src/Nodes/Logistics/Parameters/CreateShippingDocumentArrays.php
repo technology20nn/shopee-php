@@ -3,10 +3,11 @@
 namespace Shopee\Nodes\Logistics\Parameters;
 
 use Shopee\Nodes\Item\Parameters\Logistic;
+use Shopee\RequestParameterCollection;
 use Shopee\RequestParameters;
 use Shopee\RequestParametersInterface;
 
-class CreateShippingDocumentArrays extends RequestParameters
+class CreateShippingDocumentArrays extends RequestParameterCollection
 {
 
 
