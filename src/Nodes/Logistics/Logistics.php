@@ -75,4 +75,15 @@ class Logistics extends NodeAbstractV2
     {
         return $this->post('/api/v2/logistics/download_shipping_document', ClientV2::API_TYPE_SHOP, $parameters);
     }
+
+    /**
+     * Get return list address
+     *
+     * @param array|RequestParametersInterface $parameters
+     * @return ResponseData
+     */
+    public function getAddressList($parameters = []): ResponseData
+    {
+        return $this->post('/api/v2/logistics/get_address_list', ClientV2::API_TYPE_SHOP, $parameters);
+    }
 }
