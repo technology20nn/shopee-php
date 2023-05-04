@@ -60,6 +60,18 @@ class Logistics extends NodeAbstractV2
      * @param array|RequestParametersInterface $parameters
      * @return ResponseData
      */
+    public function batchShipOrder($parameters = []): ResponseData
+    {
+        return $this->post('/api/v2/logistics/batch_ship_order', ClientV2::API_TYPE_SHOP, $parameters);
+    }
+
+
+    /**
+     * Get return list.
+     *
+     * @param array|RequestParametersInterface $parameters
+     * @return ResponseData
+     */
     public function createShipingDocument($parameters = []): ResponseData
     {
         return $this->post('/api/v2/logistics/create_shipping_document', ClientV2::API_TYPE_SHOP, $parameters);
