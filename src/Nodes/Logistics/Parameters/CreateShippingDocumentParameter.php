@@ -8,7 +8,7 @@ class CreateShippingDocumentParameter extends RequestParameters
 {
 
     protected $parameters = [
-        'shipping_document_type' => 'NORMAL_AIR_WAYBILL',
+        'shipping_document_type' => 'THERMAL_AIR_WAYBILL',
     ];
     /**
      * @param string $order_sn

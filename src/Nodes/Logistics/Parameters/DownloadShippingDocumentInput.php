@@ -7,7 +7,7 @@ use Shopee\RequestParameters;
 class DownloadShippingDocumentInput extends RequestParameters
 {
     protected $parameters = [
-        'shipping_document_type' => 'NORMAL_AIR_WAYBILL',
+        'shipping_document_type' => 'THERMAL_AIR_WAYBILL',
     ];
 
     /**
