@@ -3,7 +3,6 @@
 namespace Shopee\Nodes\Payment;
 
 use Shopee\ClientV2;
-use Shopee\Nodes\NodeAbstract;
 use Shopee\Nodes\NodeAbstractV2;
 use Shopee\ResponseData;
 
@@ -36,5 +35,14 @@ class Payment extends NodeAbstractV2
     public function getEscrowDetail($parameters = []): ResponseData
     {
         return $this->get('/api/v2/payment/get_escrow_detail', ClientV2::API_TYPE_SHOP, $parameters);
+    }
+
+    /**
+     * @param array $parameters
+     * @return ResponseData
+     */
+    public function getEscrowList($parameters = []): ResponseData
+    {
+        return $this->get('/api/v2/payment/get_escrow_list', ClientV2::API_TYPE_SHOP, $parameters);
     }
 }
