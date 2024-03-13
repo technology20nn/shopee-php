@@ -25,6 +25,22 @@ class Authorization extends NodeAbstractV2
             'shop_id' => $shop_id
         ]);
     }
+    /**
+     * Shop performance includes the indexes from "My Performance" of Seller Center.
+     *
+     * @param $auth_code
+     * @param $partner_id
+     * @param $shop_id
+     * @return ResponseData
+     */
+    public function getAccessTokenByMainAccount($auth_code, $partner_id, $main_account_id): ResponseData
+    {
+        return $this->post('/api/v2/auth/token/get', ClientV2::API_TYPE_PUBLIC, [
+            'code' => $auth_code,
+            'partner_id' => $partner_id,
+            'main_account_id' => $main_account_id
+        ]);
+    }
 
     /**
      * Only for TW whitelisted shop.Use this API to set the installment status of shop.
