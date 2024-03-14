@@ -207,13 +207,20 @@ class ClientV2
         return $this;
     }
 
-    public function getDefaultParameters(): array
+    public function getDefaultParameters($type_api = self::API_TYPE_SHOP): array
     {
-        return [
-            'partner_id' => $this->partnerId,
-            'shopid' => $this->shopId,
-            'timestamp' => time(), // Put the current UNIX timestamp when making a request
-        ];
+        if($type_api == self::API_TYPE_PUBLIC){
+            return [
+                'partner_id' => $this->partnerId,
+                'timestamp' => time(), // Put the current UNIX timestamp when making a request
+            ];
+        }else{
+            return [
+                'partner_id' => $this->partnerId,
+                'shopid' => $this->shopId,
+                'timestamp' => time(), // Put the current UNIX timestamp when making a request
+            ];
+        }
     }
 
     /**
@@ -224,9 +231,9 @@ class ClientV2
      * @param array $data
      * @return string
      */
-    protected function createJsonBody(array $data): string
+    protected function createJsonBody(array $data, $type_api = self::API_TYPE_SHOP): string
     {
-        $data = array_merge($this->getDefaultParameters(), $data);
+        $data = array_merge($this->getDefaultParameters($type_api), $data);
 
         return json_encode($data);
     }
@@ -272,7 +279,7 @@ class ClientV2
             ->withPath($path)
             ->withQuery($auth_query);
 
-        $jsonBody = $this->createJsonBody($data);
+        $jsonBody = $this->createJsonBody($data, $api_type);
 
         $headers['User-Agent'] = $this->userAgent;
         $headers['Content-Type'] = 'application/json';
