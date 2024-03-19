@@ -16,8 +16,8 @@ class Image extends NodeAbstractV2
      * @param  array  $parameters
      * @return ResponseData
      */
-    public function uploadImage($image_url): ResponseData
+    public function uploadImage($image_url, $params = []): ResponseData
     {
-        return $this->upload('/api/v2/media_space/upload_image', ClientV2::API_TYPE_PUBLIC, $image_url);
+        return $this->uploadWithBody('/api/v2/media_space/upload_image', ClientV2::API_TYPE_PUBLIC, $image_url,$params);
     }
 }

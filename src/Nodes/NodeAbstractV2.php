@@ -74,7 +74,19 @@ abstract class NodeAbstractV2
         $response = $this->client->upload($request, $file_url);
         return new ResponseData($response);
     }
+    /**
+     * @param string|UriInterface $uri
+     * @param $type_api
+     * @param $file_url
+     * @return ResponseData
+     */
+    public function uploadWithBody($uri, $type_api, $file_url, $params = [])
+    {
 
+        $request = $this->client->newRequest($uri, $type_api, $params);
+        $response = $this->client->upload($request, $file_url);
+        return new ResponseData($response);
+    }
     /**
      * @param $video_upload_id
      * @param $file_url
