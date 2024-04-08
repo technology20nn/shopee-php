@@ -440,7 +440,7 @@ class ClientV2
     {
         $path_info = pathinfo($urlDownload);
         $filename = $path_info['basename'];
-        $tempImage = tempnam(sys_get_temp_dir(), $filename);
+        $tempImage = tempnam(sys_get_temp_dir(), 'shopee').$filename;
         copy($urlDownload, $tempImage);
         return [$tempImage, $filename];
     }
