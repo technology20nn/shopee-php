@@ -68,6 +68,6 @@ class Chat extends NodeAbstractV2 {
      * @return ResponseData
      */
     public function uploadImage($image_url, $parameters = []): ResponseData {
-        return $this->uploadWithBody("/api/v2/sellerchat/upload_image", ClientV2::API_TYPE_SHOP, $image_url, $parameters);
+        return $this->chatUploadWithBody("/api/v2/sellerchat/upload_image", ClientV2::API_TYPE_SHOP, $image_url, $parameters);
     }
 }

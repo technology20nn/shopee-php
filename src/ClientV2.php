@@ -294,7 +294,7 @@ class ClientV2
         );
     }
 
-    public function upload(RequestInterface $request, $file_url): ResponseInterface
+    public function upload(RequestInterface $request, $file_url, $field_name = 'image'): ResponseInterface
     {
         try {
             list($tempImageDownload, $fileName) = $this->downloadFile($file_url);
@@ -304,7 +304,7 @@ class ClientV2
                 [
                 'multipart' => [
                     [
-                        'name' => 'image',
+                        'name' => $field_name,
                         'contents' => fopen($tempImageDownload, 'r'),
                         'file_name' => $fileName
                     ],
