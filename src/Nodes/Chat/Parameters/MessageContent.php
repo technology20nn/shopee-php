@@ -38,16 +38,16 @@ class MessageContent extends RequestParameters
         return $this;
     }
 
-    public function getItemId(): string
+    public function getItemId()
     {
         return $this->parameters['item_id'];
     }
 
     /**
-     * @param string $item_id
+     * @param  $item_id
      * @return $this
      */
-    public function setItemId(string $item_id)
+    public function setItemId($item_id)
     {
         $this->parameters['item_id'] = $item_id;
         return $this;
