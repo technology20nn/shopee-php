@@ -6,7 +6,7 @@ use Shopee\RequestParameters;
 
 class GetMessages extends RequestParameters
 {
-    public function getMessageIdList(): int
+    public function getMessageIdList()
     {
         return $this->parameters['message_id_list'];
     }
@@ -15,14 +15,14 @@ class GetMessages extends RequestParameters
      * @param int $message_id_list
      * @return $this
      */
-    public function setMessageIdList(int $message_id_list)
+    public function setMessageIdList($message_id_list)
     {
         $this->parameters['message_id_list'] = $message_id_list;
 
         return $this;
     }
 
-    public function getConversationId(): int
+    public function getConversationId()
     {
         return $this->parameters['conversation_id'];
     }
