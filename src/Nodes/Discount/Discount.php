@@ -72,7 +72,7 @@ class Discount extends NodeAbstractV2
      */
     public function getDiscountsList($parameters = []): ResponseData
     {
-        return $this->post('/api/v2/discount/get_discount_list', ClientV2::API_TYPE_SHOP, $parameters);
+        return $this->get('/api/v2/discount/get_discount_list', ClientV2::API_TYPE_SHOP, $parameters);
     }
 
     /**
