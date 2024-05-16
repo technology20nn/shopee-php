@@ -96,4 +96,8 @@ class Discount extends NodeAbstractV2
     {
         return $this->post('/api/v2/discount/update_discount_item', ClientV2::API_TYPE_SHOP, $parameters);
     }
+    public function endDiscount($parameters = []): ResponseData
+    {
+        return $this->post('/api/v2/discount/end_discount', ClientV2::API_TYPE_SHOP, $parameters);
+    }
 }
