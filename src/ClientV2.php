@@ -271,7 +271,7 @@ class ClientV2
      * @param array $data
      * @return RequestInterface
      */
-    public function newRequest($uri, $api_type, array $headers = [], $data = [], $method = 'POST'): RequestInterface
+    public function newRequest($uri, $api_type, array $headers = [], $data = []): RequestInterface
     {
         $uri = Utils::uriFor($uri);
         $auth_query = $this->signature($uri, $api_type);
@@ -290,7 +290,7 @@ class ClientV2
         $headers['Content-Type'] = 'application/json';
 
         return new Request(
-            $method, // All APIs should use POST method
+            'POST', // All APIs should use POST method
             $uri,
             $headers,
             $jsonBody
