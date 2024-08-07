@@ -26,7 +26,7 @@ class ShipOrderPickupInput extends RequestParameters
 
     public function setPickupTimeId($pickup_time_id)
     {
-        $this->parameters['pickup_time_id'] = $pickup_time_id;
+        $this->parameters['pickup_time_id'] = $pickup_time_id? ((string)$pickup_time_id ): null;
         return $this;
     }
     /**
