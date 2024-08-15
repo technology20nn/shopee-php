@@ -114,4 +114,15 @@ class Logistics extends NodeAbstractV2
     {
         return $this->get('/api/v2/logistics/get_tracking_info', ClientV2::API_TYPE_SHOP, $parameters);
     }
+
+    /**
+     * Get return list.
+     *
+     * @param array|RequestParametersInterface $parameters
+     * @return ResponseData
+     */
+    public function updateShipOrder($parameters = []): ResponseData
+    {
+        return $this->post('/api/v2/logistics/update_shipping_order', ClientV2::API_TYPE_SHOP, $parameters);
+    }
 }
