@@ -4,7 +4,7 @@ namespace Shopee\Nodes\AddOnDeal\Parameters;
 
 use Shopee\RequestParameters;
 
-class AddAddOnDealMainItem extends RequestParameters
+class AddAddOnDealSubItem extends RequestParameters
 {
 
     use AddOnDealTrait;

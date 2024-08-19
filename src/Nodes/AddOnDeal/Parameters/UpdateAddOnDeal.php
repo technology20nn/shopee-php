@@ -96,7 +96,7 @@ class UpdateAddOnDeal extends RequestParameters
      * @param int $promotion_purchase_limit
      * @return $this
      */
-    public function setPromotionPurchaseLimit(int $promotion_purchase_limit)
+    public function setPromotionPurchaseLimit($promotion_purchase_limit)
     {
         $this->parameters['promotion_purchase_limit'] = $promotion_purchase_limit;
 

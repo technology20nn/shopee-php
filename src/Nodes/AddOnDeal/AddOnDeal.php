@@ -1,6 +1,6 @@
 <?php
 
-namespace Shopee\Nodes\Discount;
+namespace Shopee\Nodes\AddOnDeal;
 
 use Shopee\ClientV2;
 use Shopee\Nodes\NodeAbstractV2;
@@ -10,7 +10,7 @@ use Shopee\ResponseData;
 class AddOnDeal extends NodeAbstractV2
 {
     /**
-     * Use this api to add shop discount activity.
+     * Use this api to add shop add on deal activity.
      *
      * @param array|RequestParametersInterface $parameters
      * @return ResponseData
@@ -21,7 +21,7 @@ class AddOnDeal extends NodeAbstractV2
     }
 
     /**
-     * Use this api to add shop discount item.
+     * Use this api to add shop add on deal item.
      *
      * @param array|RequestParametersInterface $parameters
      * @return ResponseData
@@ -32,7 +32,7 @@ class AddOnDeal extends NodeAbstractV2
     }
 
     /**
-     * Use this api to delete one discount activity BEFORE it starts.
+     * Use this api to delete one add on deal activity BEFORE it starts.
      *
      * @param array|RequestParametersInterface $parameters
      * @return ResponseData
@@ -43,7 +43,7 @@ class AddOnDeal extends NodeAbstractV2
     }
 
     /**
-     * Use this api to delete items of the discount activity.
+     * Use this api to delete items of the add on deal activity.
      *
      * @param array|RequestParametersInterface $parameters
      * @return ResponseData
@@ -54,7 +54,7 @@ class AddOnDeal extends NodeAbstractV2
     }
 
     /**
-     * Use this api to get one shop discount activity detail.
+     * Use this api to get one shop add on deal activity detail.
      *
      * @param array|RequestParametersInterface $parameters
      * @return ResponseData
@@ -65,7 +65,7 @@ class AddOnDeal extends NodeAbstractV2
     }
 
     /**
-     * Use this api to get shop discount activity list.
+     * Use this api to get shop add on deal activity list.
      *
      * @param array|RequestParametersInterface $parameters
      * @return ResponseData
@@ -76,7 +76,7 @@ class AddOnDeal extends NodeAbstractV2
     }
 
     /**
-     * Use this api to update one discount information
+     * Use this api to update one add on deal information
      *
      * @param array|RequestParametersInterface $parameters
      * @return ResponseData
@@ -87,7 +87,7 @@ class AddOnDeal extends NodeAbstractV2
     }
 
     /**
-     * Use this api to update items of the discount activity.
+     * Use this api to update items of the add on deal activity.
      *
      * @param array|RequestParametersInterface $parameters
      * @return ResponseData

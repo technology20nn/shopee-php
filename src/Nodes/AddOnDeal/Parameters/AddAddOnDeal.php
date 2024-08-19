@@ -76,10 +76,10 @@ class AddAddOnDeal extends RequestParameters
     }
 
     /**
-     * @param float $purchase_min_spend
+     * @param float|null $purchase_min_spend
      * @return $this
      */
-    public function setPuschaseMinSpend(float $purchase_min_spend)
+    public function setPuschaseMinSpend($purchase_min_spend)
     {
         $this->parameters['purchase_min_spend'] = $purchase_min_spend;
 
@@ -92,10 +92,10 @@ class AddAddOnDeal extends RequestParameters
     }
 
     /**
-     * @param int $per_gift_num
+     * @param int|null $per_gift_num
      * @return $this
      */
-    public function setPerGiftNum(int $per_gift_num)
+    public function setPerGiftNum($per_gift_num)
     {
         $this->parameters['per_gift_num'] = $per_gift_num;
 
@@ -108,10 +108,10 @@ class AddAddOnDeal extends RequestParameters
     }
 
     /**
-     * @param int $promotion_purchase_limit
+     * @param int|null $promotion_purchase_limit
      * @return $this
      */
-    public function setPromotionPurchaseLimit(int $promotion_purchase_limit)
+    public function setPromotionPurchaseLimit($promotion_purchase_limit)
     {
         $this->parameters['promotion_purchase_limit'] = $promotion_purchase_limit;
 
