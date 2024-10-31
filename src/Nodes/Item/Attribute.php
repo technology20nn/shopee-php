@@ -23,4 +23,8 @@ class Attribute extends NodeAbstractV2 {
     public function getVariantAttributes($parameters = []): ResponseData {
         return $this->get("/api/v2/product/get_variation_tree", ClientV2::API_TYPE_SHOP, $parameters);
     }
+
+    public function getTreeAttributes($parameters = []): ResponseData {
+        return $this->get("/api/v2/product/get_attributes", ClientV2::API_TYPE_SHOP, $parameters);
+    }
 }
