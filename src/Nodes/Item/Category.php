@@ -38,4 +38,8 @@ class Category extends NodeAbstractV2 {
     public function checkSupportChart($parameters = []): ResponseData {
         return $this->get("/api/v2/product/support_size_chart", ClientV2::API_TYPE_SHOP, $parameters);
     }
+
+    public function getItemLimit($parameters = []): ResponseData {
+        return $this->get("/api/v2/product/get_item_limit", ClientV2::API_TYPE_SHOP, $parameters);
+    }
 }
