@@ -153,6 +153,7 @@ class ClientV2
 		$this->nodes['chat'] = new Nodes\Chat\Chat($this);
         $this->nodes['voucher'] = new Nodes\Voucher\Voucher($this);
         $this->nodes['add_on_deal'] = new Nodes\AddOnDeal\AddOnDeal($this);
+        $this->nodes['ads'] = new Nodes\Ads\Ads($this);
 
     }
 
