@@ -7,7 +7,7 @@ trait FlashSaleTrait
 {
     public function getFlashSaleId(): int
     {
-        return $this->parameters['flase_sale_id'];
+        return $this->parameters['flash_sale_id'];
     }
 
     /**
@@ -16,7 +16,7 @@ trait FlashSaleTrait
      */
     public function setFlashSaleId(int $flase_sale_id)
     {
-        $this->parameters['flase_sale_id'] = $flase_sale_id;
+        $this->parameters['flash_sale_id'] = $flase_sale_id;
 
         return $this;
     }
