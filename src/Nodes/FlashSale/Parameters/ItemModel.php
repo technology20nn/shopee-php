@@ -26,18 +26,18 @@ class ItemModel extends RequestParameters
         return $this;
     }
 
-    public function getStock(): int
+    public function getStatus(): int
     {
-        return $this->parameters['stock'];
+        return $this->parameters['status'];
     }
 
     /**
-     * @param int $stock
+     * @param int $status
      * @return $this
      */
-    public function setStock(int $stock)
+    public function setStatus(int $status)
     {
-        $this->parameters['stock'] = $stock;
+        $this->parameters['status'] = $status;
 
         return $this;
     }
@@ -57,5 +57,23 @@ class ItemModel extends RequestParameters
 
         return $this;
     }
+
+    public function getStock(): int
+    {
+        return $this->parameters['stock'];
+    }
+
+    /**
+     * @param int $stock
+     * @return $this
+     */
+    public function setStock(int $stock)
+    {
+        $this->parameters['stock'] = $stock;
+
+        return $this;
+    }
+
+    
 
 }

@@ -28,7 +28,7 @@ class FlashSale extends NodeAbstractV2
      */
     public function addFlashSaleItem($parameters = []): ResponseData
     {
-        return $this->post('/api/v2/flash_sale/add_flash_sale_item', ClientV2::API_TYPE_SHOP, $parameters);
+        return $this->post('/api/v2/shop_flash_sale/add_shop_flash_sale_items', ClientV2::API_TYPE_SHOP, $parameters);
     }
 
     /**
@@ -39,7 +39,7 @@ class FlashSale extends NodeAbstractV2
      */
     public function deleteFlashSale($parameters = []): ResponseData
     {
-        return $this->post('/api/v2/flash_sale/delete_flash_sale', ClientV2::API_TYPE_SHOP, $parameters);
+        return $this->post('/api/v2/shop_flash_sale/delete_shop_flash_sale', ClientV2::API_TYPE_SHOP, $parameters);
     }
 
     /**
@@ -50,7 +50,7 @@ class FlashSale extends NodeAbstractV2
      */
     public function deleteFlashSaleItem($parameters = []): ResponseData
     {
-        return $this->post('/api/v2/flash_sale/delete_flash_sale_item', ClientV2::API_TYPE_SHOP, $parameters);
+        return $this->post('/api/v2/shop_flash_sale/delete_shop_flash_sale_items', ClientV2::API_TYPE_SHOP, $parameters);
     }
 
     /**
@@ -59,9 +59,14 @@ class FlashSale extends NodeAbstractV2
      * @param array|RequestParametersInterface $parameters
      * @return ResponseData
      */
-    public function getFlashSaleDetail($parameters = []): ResponseData
+    public function getFlashSale($parameters = []): ResponseData
     {
-        return $this->get('/api/v2/flash_sale/get_flash_sale', ClientV2::API_TYPE_SHOP, $parameters);
+        return $this->get('/api/v2/shop_flash_sale/get_shop_flash_sale', ClientV2::API_TYPE_SHOP, $parameters);
+    }
+
+    public function getFlashSaleItems($parameters = []): ResponseData
+    {
+        return $this->get('/api/v2/shop_flash_sale/get_shop_flash_sale_items', ClientV2::API_TYPE_SHOP, $parameters);
     }
 
     /**
@@ -72,7 +77,7 @@ class FlashSale extends NodeAbstractV2
      */
     public function getFlashSalesList($parameters = []): ResponseData
     {
-        return $this->get('/api/v2/flash_sale/get_flash_sale_list', ClientV2::API_TYPE_SHOP, $parameters);
+        return $this->get('/api/v2/shop_flash_sale/get_shop_flash_sale_list', ClientV2::API_TYPE_SHOP, $parameters);
     }
 
     /**
@@ -83,7 +88,7 @@ class FlashSale extends NodeAbstractV2
      */
     public function updateFlashSale($parameters = []): ResponseData
     {
-        return $this->post('/api/v2/flash_sale/update_flash_sale', ClientV2::API_TYPE_SHOP, $parameters);
+        return $this->post('/api/v2/shop_flash_sale/update_shop_flash_sale', ClientV2::API_TYPE_SHOP, $parameters);
     }
 
     /**
@@ -94,12 +99,9 @@ class FlashSale extends NodeAbstractV2
      */
     public function updateFlashSaleItems($parameters = []): ResponseData
     {
-        return $this->post('/api/v2/flash_sale/update_flash_sale_item', ClientV2::API_TYPE_SHOP, $parameters);
+        return $this->post('/api/v2/shop_flash_sale/update_shop_flash_sale_items', ClientV2::API_TYPE_SHOP, $parameters);
     }
-    public function endFlashSale($parameters = []): ResponseData
-    {
-        return $this->post('/api/v2/flash_sale/end_flash_sale', ClientV2::API_TYPE_SHOP, $parameters);
-    }
+
 
     public function getTimeSlotId($parameters = []): ResponseData
     {

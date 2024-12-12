@@ -41,7 +41,7 @@ class FlashSaleItem extends RequestParameters
 
     public function getModelList(): ItemModelList
     {
-        return $this->parameters['model_list'];
+        return $this->parameters['models'];
     }
 
     /**
@@ -50,7 +50,7 @@ class FlashSaleItem extends RequestParameters
      */
     public function setModelList(ItemModelList $item_model_list)
     {
-        $this->parameters['model_list'] = $item_model_list;
+        $this->parameters['models'] = $item_model_list;
 
         return $this;
     }
