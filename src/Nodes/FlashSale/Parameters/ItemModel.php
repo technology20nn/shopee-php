@@ -42,16 +42,16 @@ class ItemModel extends RequestParameters
         return $this;
     }
 
-    public function getModelId(): int
+    public function getModelId()
     {
         return $this->parameters['model_id'];
     }
 
     /**
-     * @param int $model_id
+     * @param  $model_id
      * @return $this
      */
-    public function setModelId(int $model_id)
+    public function setModelId($model_id)
     {
         $this->parameters['model_id'] = $model_id;
 
