@@ -155,6 +155,7 @@ class ClientV2
         $this->nodes['add_on_deal'] = new Nodes\AddOnDeal\AddOnDeal($this);
         $this->nodes['ads'] = new Nodes\Ads\Ads($this);
         $this->nodes['flash_sale'] = new Nodes\FlashSale\FlashSale($this);
+        $this->nodes['bundle_deal'] = new Nodes\BundleDeal\BundleDeal($this);
     }
 
     public function __get(string $name)
