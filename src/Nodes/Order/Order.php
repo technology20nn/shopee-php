@@ -101,4 +101,8 @@ class Order extends NodeAbstractV2
     {
         return $this->post('/api/v2/order/add_invoice_data', ClientV2::API_TYPE_SHOP, $parameters);
     }
+    public function getBuyerInvoiceInfo($parameters = []): ResponseData
+    {
+        return $this->post('/api/v2/order/get_buyer_invoice_info', ClientV2::API_TYPE_SHOP, $parameters);
+    }
 }
