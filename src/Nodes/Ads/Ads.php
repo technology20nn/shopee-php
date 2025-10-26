@@ -25,10 +25,20 @@ class Ads extends NodeAbstractV2
     {
         return $this->get("/api/v2/ads/get_all_cpc_ads_hourly_performance", ClientV2::API_TYPE_SHOP, $parameters);
     }
-
+    public function getProductCampainHourlyPerformance($parameters = []): ResponseData
+    {
+        return $this->get("/api/v2/ads/get_product_campaign_hourly_performance", ClientV2::API_TYPE_SHOP, $parameters);
+    }
     public function getProductCampainDailyPerformance($parameters = []): ResponseData
     {
         return $this->get("/api/v2/ads/get_product_campaign_daily_performance", ClientV2::API_TYPE_SHOP, $parameters);
     }
-
+    public function getProductLevelCampainList($parameters = []): ResponseData
+    {
+        return $this->get("/api/v2/ads/get_product_level_campaign_id_list", ClientV2::API_TYPE_SHOP, $parameters);
+    }
+    public function getProductLevelCampainSetting($parameters = []): ResponseData
+    {
+        return $this->get("/api/v2/ads/get_product_level_campaign_setting_info", ClientV2::API_TYPE_SHOP, $parameters);
+    }
 }
