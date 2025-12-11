@@ -45,4 +45,14 @@ class Payment extends NodeAbstractV2
     {
         return $this->get('/api/v2/payment/get_escrow_list', ClientV2::API_TYPE_SHOP, $parameters);
     }
+
+    /**
+     * @param array $parameters
+     * @return ResponseData
+     */
+    public function getIncomeDetail($parameters = []): ResponseData
+    {
+        return $this->get('/api/v2/payment/get_income_detail', ClientV2::API_TYPE_SHOP, $parameters);
+    }
+
 }
