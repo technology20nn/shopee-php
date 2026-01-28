@@ -26,4 +26,9 @@ class Returns extends NodeAbstractV2
     {
         return $this->get('/api/v2/returns/get_return_detail', ClientV2::API_TYPE_SHOP, $parameters);
     }
+
+    public function getReturnTrackingInfo($parameters = []): ResponseData
+    {
+        return $this->get('/api/v2/returns/get_reverse_tracking_info', ClientV2::API_TYPE_SHOP, $parameters);
+    }
 }

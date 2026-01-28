@@ -129,4 +129,5 @@ class Logistics extends NodeAbstractV2
     {
         return $this->post('/api/v2/logistics/get_shipping_document_data_info', ClientV2::API_TYPE_SHOP, $parameters);
     }
+    
 }
