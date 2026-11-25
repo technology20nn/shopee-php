@@ -59,4 +59,36 @@ class Authorization extends NodeAbstractV2
         ]);
     }
 
+    /**
+     * Exchange the authorization code for a token without shop_id (user-level apps such as Livestream, Video).
+     *
+     * @param $auth_code
+     * @param $partner_id
+     * @return ResponseData
+     */
+    public function getAccessTokenByCode($auth_code, $partner_id): ResponseData
+    {
+        return $this->post('/api/v2/auth/token/get', ClientV2::API_TYPE_PUBLIC, [
+            'code' => $auth_code,
+            'partner_id' => $partner_id
+        ]);
+    }
+
+    /**
+     * Refresh a user-level token by user_id instead of shop_id.
+     *
+     * @param $partner_id
+     * @param $user_id
+     * @param $refresh_token
+     * @return ResponseData
+     */
+    public function refreshAccessTokenByUser($partner_id, $user_id, $refresh_token): ResponseData
+    {
+        return $this->post('/api/v2/auth/access_token/get', ClientV2::API_TYPE_PUBLIC, [
+            'refresh_token' => $refresh_token,
+            'partner_id' => $partner_id,
+            'user_id' => $user_id
+        ]);
+    }
+
 }
